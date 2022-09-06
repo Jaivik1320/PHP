@@ -1,94 +1,175 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.rtl.min.css"
-        integrity="sha384-+4j30LffJ4tgIMrq9CwHvn0NjEvmuDCOfk6Rpg2xg7zgOxWWtLtozDEEVvBPgHqE" crossorigin="anonymous">
-
-    <title>iDiscuss-coding forums!</title>
-</head>
-
+    <meta charset="UTF-8">
+    <title>Countries state and Cities</title>
+<!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+ 
+        <!-- Styles -->
+ 
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" >
+ 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+ 
+        <style>
+            html, body {
+                background-color: #fff;
+                color: #636b6f;
+                font-family: 'Nunito', sans-serif;
+                font-weight: 200;
+                height: 100vh;
+                margin: 0;
+            }
+ 
+            .full-height {
+                height: 100vh;
+            }
+ 
+            .flex-center {
+                align-items: center;
+                display: flex;
+                justify-content: center;
+            }
+ 
+            .position-ref {
+                position: relative;
+            }
+ 
+            .top-right {
+                position: absolute;
+                right: 10px;
+                top: 18px;
+            }
+ 
+            .content {
+                text-align: center;
+            }
+ 
+            .title {
+                font-size: 84px;
+            }
+ 
+            .links > a {
+                color: #636b6f;
+                padding: 0 25px;
+                font-size: 13px;
+                font-weight: 600;
+                letter-spacing: .1rem;
+                text-decoration: none;
+                text-transform: uppercase;
+            }
+ 
+            .m-b-md {
+                margin-bottom: 30px;
+            }
+        </style>
+    </head>
 <body>
-    <?php include 'partials/_header.php'; ?>
-
-   
-   <!-- Slider -->
-    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
-                aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                aria-label="Slide 3"></button>
-        </div>
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="https://bit.ly/3TonUVQ" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="https://bit.ly/3CLbrWi" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="https://bit.ly/3ebRKwQ" class="d-block w-100" alt="...">
-            </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-            data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-            data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
+<nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Jp's CSC</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        
+        
+        
+      </ul>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
     </div>
-    
-    <div class="container my-3">
-        <h2 class="text-center">iDiscuss-Categories</h2>
+  </div>
+</nav>
+    <div class="container mt-5">
         <div class="row">
-
-
-            <div class="col-md-4">
-                <div class="card" style="width: 18rem;">
-
-                    <img src="https://bit.ly/3QZhif9" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p>
-                        <a href="#" class="btn btn-primary">View Threads</a>
-
-
-                    </div>
+            <div class="card">
+              <div class="card-header">
+                    <h2 class="text-success">Welcome to Jp's Explore World!</h2>
                 </div>
+                <div class="card-body">
+                 <form>
+                    <div class="form-group">
+                      <label for="country">Country</label>
+                      <select class="form-control" id="country-dropdown">
+                      <option value="">Select Country</option>
+                        <?php
+                        require_once "db.php";
+ 
+                        $result = mysqli_query($conn,"SELECT * FROM countries");
+ 
+                        while($row = mysqli_fetch_array($result)) {
+                        ?>
+                            <option value="<?php echo $row['id'];?>"><?php echo $row["name"];?></option>
+                        <?php
+                        }
+                        ?>
+                         
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="state">State</label>
+                      <select class="form-control" id="state-dropdown">
+                         
+                      </select>
+                    </div>                        
+ 
+                    <div class="form-group">
+                      <label for="city">City</label>
+                      <select class="form-control" id="city-dropdown">
+                         
+                      </select>
+                    </div>
+  
+                </div>
+              </div>
             </div>
-
-        </div>
-
+        </div> 
     </div>
-
-    <?php include 'partials/_footer.php'; ?>
-
-
-    <!-- Optional JavaScript; choose one of the two! -->
-
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous">
-    </script>
-
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
-    -->
+<script>
+$(document).ready(function() {
+    $('#country-dropdown').on('change', function() {
+            var country_id = this.value;
+            $.ajax({
+                url: "states-by-country.php",
+                type: "POST",
+                data: {
+                    country_id: country_id
+                },
+                cache: false,
+                success: function(result){
+                    $("#state-dropdown").html(result);
+                    $('#city-dropdown').html('<option value="">Select State First</option>'); 
+                }
+            });
+         
+         
+    });    
+ 
+    $('#state-dropdown').on('change', function() {
+            var state_id = this.value;
+            $.ajax({
+                url: "cities-by-state.php",
+                type: "POST",
+                data: {
+                    state_id: state_id
+                },
+                cache: false,
+                success: function(result){
+                    $("#city-dropdown").html(result);
+                }
+            });
+         
+         
+    });
+});
+</script>
 </body>
-
 </html>
